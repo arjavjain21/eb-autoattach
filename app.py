@@ -1,3 +1,4 @@
+from typing import List
 import os
 import hmac
 import hashlib
@@ -36,7 +37,7 @@ def get_lead_id_by_email(email: str) -> int:
         raise ValueError(f"No lead found for email {email}")
     return items[0]["id"]
 
-def fetch_scheduled_emails(lead_id: int) -> list[int]:
+def fetch_scheduled_emails(lead_id: int) -> List[int]:
     resp = requests.get(
         f"{EB_BASE_URL}/leads/{lead_id}/sent-emails",
         params={"scheduledEmails": 1},
